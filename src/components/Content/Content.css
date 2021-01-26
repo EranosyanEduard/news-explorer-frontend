@@ -1,0 +1,26 @@
+.content {
+  /* Grid container */
+  display: grid;
+  grid-template-columns: var(--page-section-width);
+  justify-content: center;
+  /* Other styles */
+  background: #f5f6f7;
+}
+
+.content_page_home {
+  padding: min(9.375vw, 40px) 0;
+}
+
+.content_page_news {
+  padding: min(7.8125vw, 30px) 0;
+}
+
+@media screen and (min-width: 768px) {
+  .content_page_home {
+    padding: min(5.5vw, 80px) 0;
+  }
+
+  .content_page_news {
+    padding: min(4vw, 60px) 0;
+  }
+}

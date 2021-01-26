@@ -1,0 +1,73 @@
+:root {
+  --author-image-size: 270px;
+}
+
+.author {
+  /* Grid container */
+  display: grid;
+  grid-template: var(--author-image-size) min-content / 1fr var(--author-image-size) 1fr;
+  row-gap: 25px;
+  /* Other styles */
+  padding: min(9.375vw, 40px) 0;
+}
+
+.author__image {
+  /* Grid item */
+  grid-column-start: 2;
+  /* Other styles */
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.author__info {
+  /* Grid item */
+  grid-column: 1/-1;
+  /* Grid container */
+  display: grid;
+  row-gap: 15px;
+}
+
+.author__text {
+  font: 18px/1.35 Roboto;
+  margin: 0;
+}
+
+.author__text_type_heading {
+  font: 30px/1.35 'Roboto Slab';
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --author-image-size: 30vw;
+  }
+
+  .author {
+    grid-template: min-content / var(--author-image-size) 1fr;
+    align-items: center;
+    gap: 0 min(4vw, 55px);
+    padding: min(5.5vw, 50px) 0;
+  }
+
+  .author__image {
+    grid-column-start: 1;
+    height: var(--author-image-size);
+  }
+
+  .author__info {
+    row-gap: min(2vw, 25px);
+    grid-column-start: 2;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --author-image-size: 465px;
+  }
+
+  .author__text_type_heading {
+    font-size: 40px;
+    line-height: 1.15;
+  }
+}

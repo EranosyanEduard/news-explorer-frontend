@@ -1,0 +1,43 @@
+:root {
+  --page-section-width: min(90%, 1232px);
+}
+
+.page {
+  font-family: Roboto, Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Grid container */
+  display: grid;
+  grid-template: repeat(2, auto) 1fr auto / 1fr var(--page-section-width) 1fr;
+  grid-template-areas:
+    'header header header'
+    'content content content'
+    'empty-area-left author empty-area-right'
+    'empty-area-left footer empty-area-right';
+}
+
+.page_scroll_off {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page__area {
+  background: #fff;
+  color: #1a1b22;
+}
+
+.page__area_id_author {
+  grid-area: author;
+}
+
+.page__area_id_content {
+  grid-area: content;
+}
+
+.page__area_id_footer {
+  grid-area: footer;
+}
+
+.page__area_id_header {
+  grid-area: header;
+}

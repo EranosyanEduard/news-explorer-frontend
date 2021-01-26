@@ -1,0 +1,36 @@
+.search-bar {
+  /* Grid container */
+  display: grid;
+  grid-template: repeat(2, auto) 1fr auto / fit-content(450px);
+  justify-content: center;
+  row-gap: 16px;
+  /* Other styles */
+  padding: 30px 0;
+}
+
+.search-bar__text {
+  font: 18px/1.35 Roboto;
+  margin: 0;
+}
+
+.search-bar__text_type_heading {
+  font: normal 36px/1.1 'Roboto Slab';
+}
+
+.search-bar__form {
+  grid-row-start: 4;
+}
+
+@media screen and (min-width: 768px) {
+  .search-bar {
+    grid-template-columns: min(58.59vw, 610px);
+    row-gap: min(2.08vw, 32px);
+    padding: min(5.59vw, 80px) 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .search-bar__text_type_heading {
+    font-size: 60px;
+  }
+}

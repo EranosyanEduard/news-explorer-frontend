@@ -1,0 +1,130 @@
+:root {
+  --navbar-gap-column: min(2.2vw, 32px);
+  --navbar-gap-row: 24px;
+}
+
+.navbar {
+  /* Grid container */
+  display: grid;
+  grid-template-rows: auto 56px;
+  row-gap: var(--navbar-gap-row);
+  /* Other styles */
+  font: 500 18px/24px Roboto;
+  padding: var(--navbar-gap-row) 0;
+  z-index: 1;
+}
+
+.navbar_display-toggle {
+  display: none;
+}
+
+.navbar__nav {
+  height: 100%;
+}
+
+.navbar__items {
+  /* Reset default styles */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Grid container */
+  display: grid;
+  row-gap: var(--navbar-gap-row);
+  /* Other styles */
+  height: 100%;
+}
+
+.navbar__link {
+  /* Reset default styles */
+  color: inherit;
+  text-decoration: none;
+  /* Flex container */
+  display: flex;
+  align-items: center;
+  /* Other styles */
+  height: 100%;
+}
+
+.navbar__link:hover {
+  cursor: pointer;
+}
+
+.navbar__button {
+  /* Grid container */
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+  /* Other styles */
+  background: none;
+  border: 1px solid;
+  border-radius: 100px;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  padding: 0;
+}
+
+.navbar__button:focus {
+  outline: none;
+}
+
+.navbar__button:hover {
+  cursor: pointer;
+}
+
+.navbar__logout {
+  background: no-repeat center;
+  background-size: contain;
+  width: 24px;
+  padding-top: 100%;
+}
+
+.navbar__logout_theme_dark {
+  background-image: url(../../images/header/auth-button_theme_dark.svg);
+}
+
+.navbar__logout_theme_light {
+  background-image: url(../../images/header/auth-button_theme_light.svg);
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    /* Grid container */
+    grid-template: auto / auto fit-content(250px);
+    align-items: center;
+    gap: 0 var(--navbar-gap-column);
+    /* Other styles */
+    font-size: 16px;
+    height: 100%;
+    padding: 0;
+  }
+
+  .navbar_display-toggle {
+    display: grid;
+  }
+
+  .navbar__items {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 0 var(--navbar-gap-column);
+  }
+
+  .navbar__link_active {
+    border-bottom: 2px solid;
+  }
+
+  .navbar__button {
+    height: min(5.21vw, 48px);
+    padding: 0 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .navbar {
+    font-size: 18px;
+  }
+}

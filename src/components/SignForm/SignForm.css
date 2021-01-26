@@ -15,7 +15,7 @@
 
 .form__legend {
   color: #1a1b22;
-  font: 900 24px/1.15 Roboto;
+  font: 900 24px/1.15 Roboto, var(--page-fallbackFont-family);
 }
 
 .form__box {
@@ -23,21 +23,20 @@
   display: grid;
   row-gap: calc(var(--form-box-marginTop) / 2);
   /* Other styles */
+  font: 12px/1.25 Inter, var(--page-fallbackFont-family);
   margin-top: var(--form-box-marginTop);
 }
 
 .form__label {
   color: #2f71e5;
-  font: 12px/1.25 Inter;
 }
 
 .form__input {
-  /* Reset default styles */
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   padding: 2px 0;
-  /* Other styles */
-  font: 14px/1.2 Inter;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .form__input:focus {
@@ -46,7 +45,6 @@
 
 .form__error {
   color: #f00;
-  font: 12px/1.25 Inter;
   height: 15px;
   opacity: 0;
   visibility: hidden;
@@ -67,7 +65,7 @@
   border-radius: 100px;
   box-shadow: 0 5px 15px rgba(14, 26, 57, .2);
   color: #fff;
-  font: 500 18px/1.35 Roboto;
+  font: 500 18px/1.35 Roboto, var(--page-fallbackFont-family);
   height: 64px;
   transition: background .25s, color .25s;
 }

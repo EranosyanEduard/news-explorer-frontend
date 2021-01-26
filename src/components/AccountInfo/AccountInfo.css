@@ -3,7 +3,7 @@
   display: grid;
   row-gap: 16px;
   /* Other styles */
-  font: 18px/24px Roboto;
+  font: 18px/24px Roboto, var(--page-fallbackFont-family);
   padding: 2.5vw 0 32px;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .account__text_type_heading {
-  font: normal 30px/1.15 'Roboto Slab';
+  font: normal 30px/1.15 'Roboto Slab', var(--page-fallbackFont-family);
 }
 
 .account__text_type_subheading {

@@ -18,6 +18,7 @@ function SearchForm({ contextClassName = '', onSubmit }) {
         onChange={(evt) => {
           setKeyword(() => evt.target.value);
         }}
+        required
       />
       <button
         type="submit"

@@ -8,6 +8,7 @@
   grid-template-columns: 1fr 30%;
   gap: calc(var(--footer-grid-gap) * 2) var(--footer-grid-gap);
   /* Other styles */
+  font: 16px/1.35 Roboto, var(--page-fallbackFont-family);
   padding: 20px 0;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .footer__link_type_text {
-  font: 18px/1.35 Roboto;
+  font-size: 18px;
 }
 
 .footer__link_icon_fb {
@@ -68,7 +69,6 @@
   grid-column: 1/-1;
   /* Other styles */
   color: #b6bcbf;
-  font: 16px/1.35 Roboto;
 }
 
 @media screen and (min-width: 768px) {

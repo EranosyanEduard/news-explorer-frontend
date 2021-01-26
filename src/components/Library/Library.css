@@ -7,6 +7,7 @@
   grid-template-rows: min-content 1fr;
   grid-auto-rows: min-content;
   row-gap: min(6.25vw, 30px);
+  font: 18px/1.35 Roboto, var(--page-fallbackFont-family);
 }
 
 .library_page_news {
@@ -25,7 +26,7 @@
 }
 
 .library__heading {
-  font: normal 26px/1.15 'Roboto Slab';
+  font: normal 26px/1.15 'Roboto Slab', var(--page-fallbackFont-family);
   margin: 0;
   text-align: center;
 }
@@ -45,7 +46,7 @@
   background: #fff;
   border: none;
   border-radius: 80px;
-  font: 500 18px/1.35 Roboto;
+  font-weight: 500;
   height: 56px;
   width: 288px;
   transition: opacity .5s;
@@ -67,7 +68,6 @@
 
 .library__msg {
   color: #b6bcbf;
-  font: 18px/1.35 Roboto;
   text-align: center;
 }
 

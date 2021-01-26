@@ -30,12 +30,13 @@
 }
 
 .author__text {
-  font: 18px/1.35 Roboto;
+  font: 18px/1.35 Roboto, var(--page-fallbackFont-family);
   margin: 0;
 }
 
 .author__text_type_heading {
-  font: 30px/1.35 'Roboto Slab';
+  font-family: 'Roboto Slab', var(--page-fallbackFont-family);
+  font-size: 30px;
 }
 
 @media screen and (min-width: 768px) {

@@ -125,7 +125,7 @@
   padding: 0;
   /* Other styles */
   color: #2f71e5;
-  font: 500 14px/1.2 Inter;
+  font: 500 14px/1.2 Inter, var(--page-fallbackFont-family);
   transition: opacity .5s;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .popup__heading {
-  font: 900 24px/1.15 Roboto;
+  font: 900 24px/1.15 Roboto, var(--page-fallbackFont-family);
 }
 
 @media screen and (min-width: 768px) {

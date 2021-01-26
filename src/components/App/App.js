@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import './App.css';
 import Homepage from '../Homepage/Homepage';
 import SavedNews from '../SavedNews/SavedNews';
 import newsApi from '../../utils/newsApi';

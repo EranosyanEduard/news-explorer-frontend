@@ -3,9 +3,6 @@
 }
 
 .card {
-  /* Reset default styles */
-  text-decoration: none;
-  color: inherit;
   /* Grid container */
   display: grid;
   grid-template: 40px calc(var(--card-firstAndSecondRow-size) - 40px) 1fr / 1fr;
@@ -17,10 +14,16 @@
   /* Other styles */
   background: #fff;
   border-radius: 16px;
+  color: #1a1b22;
+  font-family: Roboto, var(--page-fallbackFont-family);
 }
 
 .card:focus {
   outline: none;
+}
+
+.card:hover {
+  cursor: pointer;
 }
 
 .card__image {
@@ -58,25 +61,25 @@
 }
 
 .card__info_type_date {
-  font: 18px/1.35 'Source Sans Pro';
+  font: 18px/1.35 'Source Sans Pro', var(--page-fallbackFont-family);
 }
 
 .card__info_type_source {
-  font: bold 16px/1.25 'Roboto Slab';
+  font: bold 16px/1.25 'Roboto Slab', var(--page-fallbackFont-family);
   letter-spacing: .4px;
   text-transform: uppercase;
 }
 
 .card__text {
-  color: #1a1b22;
-  font: 16px/1.375 Roboto;
+  font-size: 16px;
+  line-height: 1.375;
   margin: 0;
   max-height: calc(16px * 1.375 * 3);
   overflow: hidden;
 }
 
 .card__text_type_heading {
-  font: normal 22px/1.2 'Roboto Slab';
+  font: normal 22px/1.2 'Roboto Slab', var(--page-fallbackFont-family);
   max-height: calc(22px * 1.2 * 3);
 }
 
@@ -88,7 +91,10 @@
   /* Other styles */
   background: #fff;
   border-radius: 10px;
-  font: 500 12px/1.15 Roboto;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.15;
   padding: 0 10px;
 }
 
@@ -98,17 +104,7 @@
 }
 
 .card__tip_type_tooltip {
-  box-shadow: 0 10px 22px rgba(59, 74, 116, .1);
-  grid-column-end: -2;
-  justify-self: end;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s, visibility .5s;
-}
-
-.card__tip_open {
-  opacity: 1;
-  visibility: visible;
+  display: none;
 }
 
 .card__button {
@@ -192,5 +188,20 @@
   .card__text_type_heading {
     font-size: 26px;
     max-height: calc(26px * 1.15 * 3);
+  }
+
+  .card__tip_type_tooltip {
+    box-shadow: 0 10px 22px rgba(59, 74, 116, .1);
+    display: flex;
+    grid-column-end: -2;
+    justify-self: end;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s;
+  }
+
+  .card__tip_open {
+    opacity: 1;
+    visibility: visible;
   }
 }

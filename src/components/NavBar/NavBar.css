@@ -9,7 +9,7 @@
   grid-template-rows: auto 56px;
   row-gap: var(--navbar-gap-row);
   /* Other styles */
-  font: 500 18px/24px Roboto;
+  font: 500 18px/24px Roboto, var(--page-fallbackFont-family);
   padding: var(--navbar-gap-row) 0;
   z-index: 1;
 }

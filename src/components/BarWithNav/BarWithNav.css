@@ -35,7 +35,7 @@
 }
 
 .bar__logo {
-  font: bold 16px/24px 'Roboto Slab';
+  font: bold 16px/24px 'Roboto Slab', var(--page-fallbackFont-family);
 }
 
 .bar__button {

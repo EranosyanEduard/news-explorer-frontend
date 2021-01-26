@@ -54,7 +54,9 @@ function Card(props) {
   const toggleTipState = () => setIsOpenTip((prevState) => !prevState);
 
   return (
-    <a className="card" href={url}>
+    <div className="card" onClick={() => {
+      window.location.assign(url);
+    }}>
       <img
         src={urlToImage}
         alt="Изображение"
@@ -86,7 +88,7 @@ function Card(props) {
           onMouseOut={toggleTipState}
         />
       </div>
-    </a>
+    </div>
   );
 }
 

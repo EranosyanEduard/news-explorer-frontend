@@ -1,9 +1,10 @@
 :root {
+  --page-fallbackFont-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   --page-section-width: min(90%, 1232px);
 }
 
 .page {
-  font-family: Roboto, Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: Roboto, var(--page-fallbackFont-family);
   min-width: 320px;
   min-height: 100vh;
   /* Grid container */

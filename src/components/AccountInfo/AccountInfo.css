@@ -1,0 +1,43 @@
+.account {
+  /* Grid container */
+  display: grid;
+  row-gap: 16px;
+  /* Other styles */
+  font: 18px/24px Roboto, var(--page-fallbackFont-family);
+  padding: 2.5vw 0 32px;
+}
+
+.account__text {
+  margin: 0;
+}
+
+.account__text_type_heading {
+  font: normal 30px/1.15 'Roboto Slab', var(--page-fallbackFont-family);
+}
+
+.account__text_type_subheading {
+  font-size: 12px;
+  opacity: .5;
+}
+
+@media screen and (min-width: 768px) {
+  .account {
+    font-size: 14px;
+    row-gap: min(2.08vw, 32px);
+    padding: min(3.125vw, 56px) 0 min(4.167vw, 40px);
+  }
+
+  .account__text_type_subheading {
+    font-size: inherit;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .account {
+    font-size: 18px;
+  }
+
+  .account__text_type_heading {
+    font-size: 46px;
+  }
+}

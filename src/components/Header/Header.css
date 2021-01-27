@@ -1,0 +1,27 @@
+.header {
+  /* Grid container */
+  display: grid;
+  grid-template: fit-content(80px) 1fr / var(--page-section-width);
+  justify-content: center;
+}
+
+.header_page_home {
+  background: url(../../images/header/bg_theme_dark.jpg) no-repeat center;
+  background-size: cover;
+  color: #fff;
+  height: max(calc(768px - 72.5vw), 400px);
+}
+
+.header_page_news {
+  height: max(calc(768px - 145.5vw), 270px);
+}
+
+@media screen and (min-width: 768px) {
+  .header_page_home {
+    height: min(52.08vw, 576px);
+  }
+
+  .header_page_news {
+    height: min(36.19vw, 374px);
+  }
+}

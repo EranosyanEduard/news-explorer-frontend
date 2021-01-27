@@ -1,0 +1,89 @@
+:root {
+  --form-box-marginTop: 15px;
+}
+
+.form {
+  padding: 16px 0;
+}
+
+.form__fieldset {
+  /* Reset default styles */
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.form__legend {
+  color: #1a1b22;
+  font: 900 24px/1.15 Roboto, var(--page-fallbackFont-family);
+}
+
+.form__box {
+  /* Grid container */
+  display: grid;
+  row-gap: calc(var(--form-box-marginTop) / 2);
+  /* Other styles */
+  font: 12px/1.25 Inter, var(--page-fallbackFont-family);
+  margin-top: var(--form-box-marginTop);
+}
+
+.form__label {
+  color: #2f71e5;
+}
+
+.form__input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding: 2px 0;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.form__error {
+  color: #f00;
+  height: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s, visibility .25s;
+}
+
+.form__error_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.form__button {
+  /* Reset default styles */
+  border: none;
+  padding: 0;
+  /* Other styles */
+  background: #2f71e5;
+  border-radius: 100px;
+  box-shadow: 0 5px 15px rgba(14, 26, 57, .2);
+  color: #fff;
+  font: 500 18px/1.35 Roboto, var(--page-fallbackFont-family);
+  height: 64px;
+  transition: background .25s, color .25s;
+}
+
+.form__button:focus {
+  outline: none;
+}
+
+.form__button:hover {
+  background: #347eff;
+  cursor: pointer;
+}
+
+.form__button:active {
+  background: #2a65cc;
+}
+
+.form__button_disable {
+  background: #e6e8eb;
+  color: #b6bcbf;
+}

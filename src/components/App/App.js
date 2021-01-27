@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Homepage from '../Homepage/Homepage';
 import SavedNews from '../SavedNews/SavedNews';
@@ -9,6 +9,8 @@ function App() {
   // [Variables]
   const history = useHistory();
   const [foundNews, setFoundNews] = useState(() => null);
+  const [isFoundSearchError, setIsFoundSearchError] = useState(() => false);
+  const [isOpenPreloader, setIsOpenPreloader] = useState(() => false);
   const [loggedIn, setLoggedIn] = useState(() => true);
   const [savedNews, setSavedNews] = useState(() => null);
   const [userEmail, setUserEmail] = useState(() => '');
@@ -17,6 +19,16 @@ function App() {
   const [isOpenPopupWithSignInForm, setIsOpenPopupWithSignInForm] = useState(() => false);
   const [isOpenPopupWithSignUpForm, setIsOpenPopupWithSignUpForm] = useState(() => false);
   const [isOpenPopupWithTooltip, setIsOpenPopupWithTooltip] = useState(() => false);
+
+  useEffect(() => {
+    if (Array.isArray(foundNews)) {
+      localStorage.setItem(
+        'foundNews', JSON.stringify(foundNews.length ? foundNews : null)
+      );
+    } else {
+      setFoundNews(() => JSON.parse(localStorage.getItem('foundNews')));
+    }
+  }, [foundNews]);
 
   // [Functions]
   const closeAllPopups = () => {
@@ -54,14 +66,19 @@ function App() {
       });
   };
   const searchNews = (keyword) => {
+    setIsOpenPreloader(() => true);
     newsApi
       .searchArticles(keyword, ({ articles }) => {
+        setIsOpenPreloader(() => false);
         setFoundNews(() => articles.map((article) => ({
           keyword: keyword[0].toUpperCase().concat(keyword.slice(1)),
           ...article
         })));
       })
-      .catch(console.log);
+      .catch(() => {
+        setIsOpenPreloader(() => false);
+        setIsFoundSearchError(() => true);
+      });
   };
 
   // [Props]
@@ -71,7 +88,9 @@ function App() {
       || isOpenPopupWithSignInForm
       || isOpenPopupWithSignUpForm
       || isOpenPopupWithTooltip,
+    isFoundSearchError,
     isOpenPopupWithBar,
+    isOpenPreloader,
     loggedIn,
     // Handlers
     closeAllPopups,

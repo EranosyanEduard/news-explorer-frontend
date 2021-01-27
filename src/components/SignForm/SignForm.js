@@ -18,13 +18,10 @@ function SignForm(props) {
     : errorClasses[0];
 
   return (
-    <form
-      className="form"
-      onSubmit={(evt) => {
-        evt.preventDefault();
-        onSubmit();
-      }}
-      noValidate
+    <form className="form" noValidate onSubmit={(evt) => {
+      evt.preventDefault();
+      onSubmit();
+    }}
     >
       <fieldset className="form__fieldset">
         <legend className="form__legend">{legend}</legend>

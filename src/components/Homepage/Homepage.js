@@ -37,6 +37,7 @@ function Homepage(props) {
       return { items: null };
     }
     return {
+      headingText: 'Результаты поиска',
       items: news.slice(0, currentNewsLimit),
       itemProps: {
         buttonType: 'markButton',

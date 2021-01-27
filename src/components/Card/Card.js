@@ -81,7 +81,7 @@ function Card(props) {
           type="button"
           className={cardButtonClassName}
           onClick={(evt) => {
-            evt.preventDefault();
+            evt.stopPropagation();
             onCardButton();
           }}
           onMouseOver={toggleTipState}

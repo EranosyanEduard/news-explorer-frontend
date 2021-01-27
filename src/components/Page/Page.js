@@ -10,8 +10,10 @@ import PopupWithBar from '../PopupWithBar/PopupWithBar';
 function Page(props) {
   const {
     // Values
+    isFoundSearchError,
     isOpenOnePopup,
     isOpenPopupWithBar,
+    isOpenPreloader,
     lastElementChildToHeader,
     lastElementChildToPage,
     libraryProps,
@@ -60,11 +62,10 @@ function Page(props) {
     }
   };
   const getLibraryProps = () => {
-    // Card props
+    // Define card button props
     const [buttonType, isDisplayedKeyword, tip] = {
-      home: ['mark', false, !loggedIn
-        ? 'Войдите, чтобы сохранять статьи'
-        : 'Добавить в сохраненные'
+      home: ['mark', false,
+        !loggedIn ? 'Войдите, чтобы сохранять статьи' : 'Добавить в сохраненные'
       ],
       news: ['remove', true, 'Убрать из сохраненных']
     }[pageID];
@@ -90,7 +91,12 @@ function Page(props) {
         pageID={pageID}
       />
       {Array.isArray(libraryProps.items) && (
-        <Content libraryProps={getLibraryProps()} pageID={pageID} />
+        <Content
+          isFoundError={isFoundSearchError}
+          isOpenPreloader={isOpenPreloader}
+          libraryProps={getLibraryProps()}
+          pageID={pageID}
+        />
       )}
       <Author />
       <Footer />

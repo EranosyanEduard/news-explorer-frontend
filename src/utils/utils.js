@@ -19,7 +19,7 @@ const NEWS_API_DATA = {
   limitMs: 7 * 24 * 3600000, // Calculate ms per week
   pageSize: 100,
   sortBy: 'publishedAt',
-  url: 'http://nomoreparties.co/news/v2/everything'
+  url: 'https://nomoreparties.co/news/v2/everything'
 };
 
 export { ERRORS, MAIN_API_DATA, NEWS_API_DATA };

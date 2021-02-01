@@ -16,5 +16,5 @@ ______
 
 Для знакомства с проектом воспользуйтесь одной из следующих ссылок:
 
-- [https://news-explorer.ml](https://api.news-explorer.ml/)
-- [https://www.news-explorer.ml](https://www.api.news-explorer.ml/)
+- [https://news-explorer.ml](https://news-explorer.ml/)
+- [https://www.news-explorer.ml](https://www.news-explorer.ml/)

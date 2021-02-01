@@ -3,13 +3,31 @@ import './SearchForm.css';
 
 function SearchForm({ contextClassName = '', onSubmit }) {
   const [keyword, setKeyword] = useState(() => '');
+  const [isVisibleFormError, setIsVisibleFormError] = useState(() => false);
+
+  // Define form error class name
+  const formErrorClasses = [
+    'search-form__item',
+    'search-form__item_type_error',
+    'search-form__item_visible'
+  ];
+  const formErrorClassName = isVisibleFormError
+    ? formErrorClasses.join(' ')
+    : formErrorClasses.slice(0, 2).join(' ');
 
   return (
-    <form className={`${contextClassName} search-form`.trim()} onSubmit={(evt) => {
-      evt.preventDefault();
-      onSubmit(keyword);
-    }}
+    <form
+      className={`${contextClassName} search-form`.trim()}
+      noValidate
+      onSubmit={(evt) => {
+        evt.preventDefault();
+        setIsVisibleFormError(() => !keyword);
+        if (keyword) {
+          onSubmit(keyword);
+        }
+      }}
     >
+      <span className={formErrorClassName}>Необходимо ввести ключевое слово</span>
       <input
         type="text"
         className="search-form__item search-form__item_type_input"
@@ -18,12 +36,8 @@ function SearchForm({ contextClassName = '', onSubmit }) {
         onChange={(evt) => {
           setKeyword(() => evt.target.value);
         }}
-        required
       />
-      <button
-        type="submit"
-        className="search-form__item search-form__item_type_button"
-      >
+      <button type="submit" className="search-form__item search-form__item_type_button">
         Искать
       </button>
     </form>

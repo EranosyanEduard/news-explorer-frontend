@@ -7,17 +7,20 @@ import PopupWithTooltip from '../PopupWithTooltip/PopupWithTooltip';
 function Homepage(props) {
   const {
     // Values
-    isOpenPopupWithSignInForm,
-    isOpenPopupWithSignUpForm,
+    isOpenPopupWithLoginForm,
+    isOpenPopupWithRegisterForm,
     isOpenPopupWithTooltip,
+    isSearchStateToggle,
     loggedIn,
     news,
     // Handlers
-    openPopupWithSignInForm,
-    openPopupWithSignUpForm,
-    registerUser,
-    searchNews,
     closeAllPopups,
+    onLogin,
+    onRegister,
+    openPopupWithLoginForm,
+    openPopupWithRegisterForm,
+    searchNews,
+    // Others
     ...pageProps
   } = props;
 
@@ -25,11 +28,7 @@ function Homepage(props) {
   const baseNewsLimit = 3;
   const [currentNewsLimit, setCurrentNewsLimit] = useState(() => 0);
 
-  useEffect(() => {
-    if (Array.isArray(news) && news.length) {
-      setCurrentNewsLimit(() => baseNewsLimit);
-    }
-  }, [news]);
+  useEffect(() => setCurrentNewsLimit(() => baseNewsLimit), [isSearchStateToggle]);
 
   // [Functions]
   const getLibraryProps = () => {
@@ -37,12 +36,9 @@ function Homepage(props) {
       return { items: null };
     }
     return {
+      headingText: 'Результаты поиска',
       items: news.slice(0, currentNewsLimit),
-      itemProps: {
-        buttonType: 'markButton',
-        tip: !loggedIn ? 'Войдите, чтобы сохранять статьи' : 'Добавить в сохраненные'
-      },
-      onButton: news.length > currentNewsLimit
+      onAddMoreCards: news.length > currentNewsLimit
         ? () => setCurrentNewsLimit((prevState) => prevState + baseNewsLimit)
         : null
     }
@@ -60,22 +56,23 @@ function Homepage(props) {
         <>
           <PopupWithSignForm
             formID="sign-in"
-            isOpen={isOpenPopupWithSignInForm}
+            isOpen={isOpenPopupWithLoginForm}
             onClose={closeAllPopups}
-            onRedirectButton={getRedirectButtonHandler(openPopupWithSignUpForm)}
+            onRedirectButton={getRedirectButtonHandler(openPopupWithRegisterForm)}
+            onSubmit={onLogin}
           />
           <PopupWithSignForm
             formID="sign-up"
-            isOpen={isOpenPopupWithSignUpForm}
+            isOpen={isOpenPopupWithRegisterForm}
             onClose={closeAllPopups}
-            onRedirectButton={getRedirectButtonHandler(openPopupWithSignInForm)}
-            onSubmit={registerUser}
+            onRedirectButton={getRedirectButtonHandler(openPopupWithLoginForm)}
+            onSubmit={onRegister}
           />
           <PopupWithTooltip
             isOpen={isOpenPopupWithTooltip}
             tooltipID="sign-up"
             onClose={closeAllPopups}
-            onRedirectButton={getRedirectButtonHandler(openPopupWithSignInForm)}
+            onRedirectButton={getRedirectButtonHandler(openPopupWithLoginForm)}
           />
         </>
       )}
@@ -84,6 +81,7 @@ function Homepage(props) {
       pageID="home"
       pageTheme="dark"
       closeAllPopups={closeAllPopups}
+      openPopupWithLoginForm={openPopupWithLoginForm}
     />
   );
 }

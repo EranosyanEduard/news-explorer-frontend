@@ -1,4 +1,4 @@
-class api {
+class Api {
   constructor(url) {
     this.url = url;
   }
@@ -15,4 +15,4 @@ class api {
   }
 }
 
-export default api;
+export default Api;

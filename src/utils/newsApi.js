@@ -1,14 +1,28 @@
-import api from './api';
-import { newsApiData } from './utils';
+import Api from './api';
+import { NEWS_API_DATA } from './utils';
 
-class newsApi extends api {
-  constructor({ apiKey, url }) {
+class NewsApi extends Api {
+  constructor({ apiKey, language, limitMs, pageSize, sortBy, url }) {
     super(url);
-    this.key = apiKey;
+    this.apiKey = apiKey;
+    this.language = language;
+    this.limitMs = limitMs;
+    this.pageSize = pageSize;
+    this.sortBy = sortBy;
   }
 
   _sendSearchRequest(keyword) {
-    return fetch(`${this.url}?q=${keyword}&apiKey=${this.key}`);
+    const currentDateMs = Date.now();
+    const reqParams = [
+      `q=${keyword}`,
+      `from=${new Date(currentDateMs - this.limitMs).toISOString()}`,
+      `to=${new Date(currentDateMs).toISOString()}`,
+      `language=${this.language}`,
+      `sortBy=${this.sortBy}`,
+      `pageSize=${this.pageSize}`,
+      `apiKey=${this.apiKey}`
+    ];
+    return fetch(`${this.url}?${reqParams.join('&')}`);
   }
 
   searchArticles(keyword, handler) {
@@ -19,4 +33,4 @@ class newsApi extends api {
   }
 }
 
-export default new newsApi(newsApiData);
+export default new NewsApi(NEWS_API_DATA);

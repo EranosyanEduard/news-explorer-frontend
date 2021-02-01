@@ -10,11 +10,13 @@ function Homepage(props) {
     isOpenPopupWithSignInForm,
     isOpenPopupWithSignUpForm,
     isOpenPopupWithTooltip,
+    isSearchStateToggle,
     loggedIn,
     news,
     // Handlers
     openPopupWithSignInForm,
     openPopupWithSignUpForm,
+    authorizeUser,
     registerUser,
     searchNews,
     closeAllPopups,
@@ -25,11 +27,7 @@ function Homepage(props) {
   const baseNewsLimit = 3;
   const [currentNewsLimit, setCurrentNewsLimit] = useState(() => 0);
 
-  useEffect(() => {
-    if (Array.isArray(news) && news.length) {
-      setCurrentNewsLimit(() => baseNewsLimit);
-    }
-  }, [news]);
+  useEffect(() => setCurrentNewsLimit(() => baseNewsLimit), [isSearchStateToggle]);
 
   // [Functions]
   const getLibraryProps = () => {
@@ -64,6 +62,7 @@ function Homepage(props) {
             isOpen={isOpenPopupWithSignInForm}
             onClose={closeAllPopups}
             onRedirectButton={getRedirectButtonHandler(openPopupWithSignUpForm)}
+            onSubmit={authorizeUser}
           />
           <PopupWithSignForm
             formID="sign-up"

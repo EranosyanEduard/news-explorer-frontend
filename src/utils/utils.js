@@ -1,8 +1,17 @@
+const errors = {
+  addNews: 'AddNewsError: при сохранении статьи произошла ошибка!',
+  getNews: 'GetNewsError: при получении статей произошла ошибка!',
+  removeNews: 'RemoveNewsError: при удалении статьи произошла ошибка!',
+  getCredential: 'CredentialError: при получении учетных данных произошла ошибка!',
+  unauthorized: 'Unauthorized: необходимо авторизоваться в приложении!'
+};
+
 const mainApiData = {
   headers: {
     'content-type': 'application/json'
   },
-  url: 'https://api.news-explorer.ml'
+  url: 'http://localhost:3001'
+  // url: 'https://api.news-explorer.ml'
 };
 
 const newsApiData = {
@@ -14,4 +23,4 @@ const newsApiData = {
   url: 'http://newsapi.org/v2/everything'
 };
 
-export { mainApiData, newsApiData };
+export { errors, mainApiData, newsApiData };

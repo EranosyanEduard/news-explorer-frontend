@@ -1,7 +1,8 @@
 .account {
   /* Grid container */
   display: grid;
-  row-gap: 16px;
+  align-items: center;
+  gap: 16px;
   /* Other styles */
   font: 18px/24px Roboto, var(--page-fallbackFont-family);
   padding: 2.5vw 0 32px;
@@ -18,6 +19,19 @@
 .account__text_type_subheading {
   font-size: 12px;
   opacity: .5;
+}
+
+.account__keyword {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.account__keyword::after {
+  content: ', ';
+}
+
+.account__keyword:last-of-type::after {
+  content: '';
 }
 
 @media screen and (min-width: 768px) {

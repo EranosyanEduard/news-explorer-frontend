@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CurrentUser from '../../contexts/currentUser';
 import './Page.css';
 import Header from '../Header/Header';
 import Content from '../Content/Content';
@@ -23,9 +24,13 @@ function Page(props) {
     // Handlers
     closeAllPopups,
     handleAuthButton,
-    handleCardButton,
+    handleMarkCard,
+    handleRemoveCard,
     openPopupWithBar
   } = props;
+
+  // [Variables]
+  const { name } = useContext(CurrentUser);
 
   // [Functions]
   const getBarWithNavProps = (isPopupItem, theme = pageTheme) => {
@@ -42,10 +47,7 @@ function Page(props) {
     const [activeLinks, authButtonContent] = loggedIn
       ? [
         baseLinks,
-        <>
-          Greta
-          <span className={`navbar__logout navbar__logout_theme_${theme}`} />
-        </>
+        <>{name}<span className={`navbar__logout navbar__logout_theme_${theme}`} /></>
       ]
       : [[baseLinks[0]], 'Авторизоваться'];
 
@@ -64,9 +66,7 @@ function Page(props) {
   const getLibraryProps = () => {
     // Define card button props
     const [buttonType, isDisplayedKeyword, tip] = {
-      home: ['mark', false,
-        !loggedIn ? 'Войдите, чтобы сохранять статьи' : 'Добавить в сохраненные'
-      ],
+      home: ['mark', false, !loggedIn ? 'Войдите, чтобы сохранять статьи' : null],
       news: ['remove', true, 'Убрать из сохраненных']
     }[pageID];
 
@@ -77,9 +77,9 @@ function Page(props) {
         buttonType,
         isDisplayedKeyword,
         tip,
-        onButton: handleCardButton
-      },
-      pageID
+        onMarkCard: loggedIn ? handleMarkCard : null,
+        onRemoveCard: handleRemoveCard
+      }
     }
   };
 

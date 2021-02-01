@@ -7,7 +7,7 @@ function Library(props) {
     headingText,
     items,
     itemProps,
-    onButton
+    onAddMoreCards
   } = props;
 
   return (
@@ -20,9 +20,14 @@ function Library(props) {
         ))}
       </ul>
       {headingText && <h2 className="library__heading">{headingText}</h2>}
-      {onButton && (
-        <button type="button" className="library__button" onClick={onButton}>
-          Показать еще</button>
+      {onAddMoreCards && (
+        <button
+          type="button"
+          className="library__button"
+          onClick={onAddMoreCards}
+        >
+          Показать еще
+        </button>
       )}
     </section>
   );

@@ -1,7 +1,7 @@
-import api from './api';
-import { mainApiData } from './utils';
+import Api from './api';
+import { MAIN_API_DATA } from './utils';
 
-class mainApi extends api {
+class MainApi extends Api {
   constructor({ headers, url }) {
     super(url);
     this.headers = headers;
@@ -96,4 +96,4 @@ class mainApi extends api {
   }
 }
 
-export default new mainApi(mainApiData);
+export default new MainApi(MAIN_API_DATA);

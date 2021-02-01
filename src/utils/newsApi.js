@@ -1,7 +1,7 @@
-import api from './api';
-import { newsApiData } from './utils';
+import Api from './api';
+import { NEWS_API_DATA } from './utils';
 
-class newsApi extends api {
+class NewsApi extends Api {
   constructor({ apiKey, language, limitMs, pageSize, sortBy, url }) {
     super(url);
     this.apiKey = apiKey;
@@ -33,4 +33,4 @@ class newsApi extends api {
   }
 }
 
-export default new newsApi(newsApiData);
+export default new NewsApi(NEWS_API_DATA);

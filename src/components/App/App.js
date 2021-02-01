@@ -7,7 +7,7 @@ import Homepage from '../Homepage/Homepage';
 import SavedNews from '../SavedNews/SavedNews';
 import newsApi from '../../utils/newsApi';
 import mainApi from '../../utils/mainApi';
-import { errors } from '../../utils/utils';
+import { ERRORS } from '../../utils/utils';
 
 function App() {
   // [Variables]
@@ -21,8 +21,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(() => false);
   // Popups state
   const [isOpenPopupWithBar, setIsOpenPopupWithBar] = useState(() => false);
-  const [isOpenPopupWithSignInForm, setIsOpenPopupWithSignInForm] = useState(() => false);
-  const [isOpenPopupWithSignUpForm, setIsOpenPopupWithSignUpForm] = useState(() => false);
+  const [isOpenPopupWithLoginForm, setIsOpenPopupWithLoginForm] = useState(() => false);
+  const [isOpenPopupWithRegisterForm, setIsOpenPopupWithRegisterForm] = useState(() => false);
   const [isOpenPopupWithTooltip, setIsOpenPopupWithTooltip] = useState(() => false);
 
   // Effects
@@ -35,7 +35,7 @@ function App() {
         .getNews((articles) => setSavedNews(() => articles.length ? articles : null))
     ])
       .then(() => setLoggedIn(() => true))
-      .catch((err) => console.error(errors.unauthorized, err));
+      .catch((err) => console.error(ERRORS.unauthorized, err));
   }, []);
   useEffect(() => {
     if (Array.isArray(foundNews)) {
@@ -51,21 +51,15 @@ function App() {
   // Popup handlers
   const closeAllPopups = () => {
     setIsOpenPopupWithBar(() => false);
-    setIsOpenPopupWithSignInForm(() => false);
-    setIsOpenPopupWithSignUpForm(() => false);
+    setIsOpenPopupWithLoginForm(() => false);
+    setIsOpenPopupWithRegisterForm(() => false);
     setIsOpenPopupWithTooltip(() => false);
   };
-  const openPopupWithBar = () => {
-    setIsOpenPopupWithBar((prevState) => !prevState);
-  };
-  const openPopupWithSignInForm = () => {
-    setIsOpenPopupWithSignInForm(() => true);
-  };
-  const openPopupWithSignUpForm = () => {
-    setIsOpenPopupWithSignUpForm(() => true);
-  };
+  const openPopupWithBar = () => setIsOpenPopupWithBar((prevState) => !prevState);
+  const openPopupWithLoginForm = () => setIsOpenPopupWithLoginForm(() => true);
+  const openPopupWithRegisterForm = () => setIsOpenPopupWithRegisterForm(() => true);
   // Api handlers
-  const authorizeUser = (userInfo, setIsVisibleError) => {
+  const onLogin = (userInfo, setIsVisibleError) => {
     mainApi
       .authorizeUser(userInfo, ({ token }) => {
         closeAllPopups();
@@ -75,12 +69,12 @@ function App() {
           .getCredential(({ email, name }) => (
             setCurrentUser(() => ({ email, name }))
           ))
-          .catch((err) => console.error(errors.getCredential, err));
+          .catch((err) => console.error(ERRORS.getCredential, err));
         setLoggedIn(() => true);
       })
       .catch(() => setIsVisibleError(() => true));
   };
-  const registerUser = (userInfo, setIsVisibleError) => {
+  const onRegister = (userInfo, setIsVisibleError) => {
     mainApi
       .registerUser(userInfo, () => {
         closeAllPopups();
@@ -101,7 +95,7 @@ function App() {
             : news
         )));
       })
-      .catch((err) => console.error(errors.addNews, err));
+      .catch((err) => console.error(ERRORS.addNews, err));
   };
   const removeNews = (articleID) => {
     mainApi
@@ -117,7 +111,7 @@ function App() {
         )));
         console.log(message);
       })
-      .catch((err) => console.error(errors.removeNews, err));
+      .catch((err) => console.error(ERRORS.removeNews, err));
   };
   const searchNews = (keyword) => {
     setIsOpenPreloader(() => true);
@@ -152,7 +146,7 @@ function App() {
       });
   };
   // Other handlers
-  const handleUserLogout = () => {
+  const onSignOut = () => {
     closeAllPopups();
     history.push('/');
     setLoggedIn(() => false);
@@ -161,23 +155,24 @@ function App() {
   // [Props]
   const pageProps = {
     // Values
-    isOpenOnePopup: isOpenPopupWithBar
-      || isOpenPopupWithSignInForm
-      || isOpenPopupWithSignUpForm
-      || isOpenPopupWithTooltip,
     isFoundSearchError,
+    isOpenOnePopup: isOpenPopupWithBar
+      || isOpenPopupWithLoginForm
+      || isOpenPopupWithRegisterForm
+      || isOpenPopupWithTooltip,
     isOpenPopupWithBar,
     isOpenPreloader,
     loggedIn,
     // Handlers
     closeAllPopups,
-    handleAuthButton: loggedIn ? handleUserLogout : () => {
+    onAuthButton: loggedIn ? onSignOut : () => {
       closeAllPopups();
-      openPopupWithSignInForm();
+      openPopupWithLoginForm();
     },
-    handleMarkCard: addNews,
-    handleRemoveCard: removeNews,
-    openPopupWithBar
+    onAddCard: addNews,
+    onRemoveCard: removeNews,
+    openPopupWithBar,
+    openPopupWithLoginForm
   };
 
   return (
@@ -187,14 +182,13 @@ function App() {
           <Homepage
             {...pageProps}
             news={foundNews}
-            isOpenPopupWithSignInForm={isOpenPopupWithSignInForm}
-            isOpenPopupWithSignUpForm={isOpenPopupWithSignUpForm}
+            isOpenPopupWithLoginForm={isOpenPopupWithLoginForm}
+            isOpenPopupWithRegisterForm={isOpenPopupWithRegisterForm}
             isOpenPopupWithTooltip={isOpenPopupWithTooltip}
             isSearchStateToggle={isSearchStateToggle}
-            openPopupWithSignInForm={openPopupWithSignInForm}
-            openPopupWithSignUpForm={openPopupWithSignUpForm}
-            authorizeUser={authorizeUser}
-            registerUser={registerUser}
+            openPopupWithRegisterForm={openPopupWithRegisterForm}
+            onLogin={onLogin}
+            onRegister={onRegister}
             searchNews={searchNews}
           />
         </Route>

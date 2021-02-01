@@ -3,11 +3,27 @@ import './Card.css';
 
 function Card(props) {
   const {
-    buttonType, isDisplayedKeyword, item, tip, onMarkCard, onRemoveCard
+    buttonType,
+    isDisplayedKeyword,
+    item,
+    loggedIn,
+    tip,
+    onAddCard,
+    onOpenPopup,
+    onRemoveCard
   } = props;
 
   const {
-    date, _id: cardID, image, isActive, keyword, link, order, source, text, title
+    date,
+    _id: cardID,
+    image,
+    isActive,
+    keyword,
+    link,
+    order,
+    source,
+    text,
+    title
   } = item;
 
   // [Variables]
@@ -16,15 +32,15 @@ function Card(props) {
   // [Props]
   // Define card button props
   const [buttonActiveClassName, onButton] = {
-    mark: ['card__button_active_mark', onMarkCard
+    mark: ['card__button_active_mark', loggedIn
       ? () => {
         if (isActive) {
           onRemoveCard(cardID);
         } else {
-          onMarkCard({ date, image, keyword, link, source, text, title }, order);
+          onAddCard({ date, image, keyword, link, source, text, title }, order);
         }
       }
-      : () => null
+      : onOpenPopup
     ],
     remove: ['', () => onRemoveCard(cardID)]
   }[buttonType];

@@ -23,10 +23,11 @@ function Page(props) {
     pageTheme,
     // Handlers
     closeAllPopups,
-    handleAuthButton,
-    handleMarkCard,
-    handleRemoveCard,
-    openPopupWithBar
+    onAuthButton,
+    onAddCard,
+    onRemoveCard,
+    openPopupWithBar,
+    openPopupWithLoginForm
   } = props;
 
   // [Variables]
@@ -57,7 +58,7 @@ function Page(props) {
         buttonContent: authButtonContent,
         isDisplayedOnMobile: isPopupItem,
         links: activeLinks.map((link) => ({ ...link, onClick: closeAllPopups })),
-        onButton: handleAuthButton
+        onButton: onAuthButton
       },
       theme,
       onButton: onMenuButton
@@ -76,9 +77,11 @@ function Page(props) {
       itemProps: {
         buttonType,
         isDisplayedKeyword,
+        loggedIn,
         tip,
-        onMarkCard: loggedIn ? handleMarkCard : null,
-        onRemoveCard: handleRemoveCard
+        onAddCard,
+        onOpenPopup: openPopupWithLoginForm,
+        onRemoveCard
       }
     }
   };

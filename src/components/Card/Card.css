@@ -27,6 +27,7 @@
 }
 
 .card__image {
+  background: #b6bcbf;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
   grid-column-start: 1;
@@ -94,6 +95,7 @@
   color: #000;
   font-size: 12px;
   font-weight: 500;
+  grid-row-start: 1;
   line-height: 1.15;
   padding: 0 10px;
 }
@@ -153,7 +155,10 @@
 
 .card__button_active_mark {
   background-image: url(../../images/card/mark-button_active.svg);
-  opacity: 1;
+}
+
+.card__button_active_mark::before {
+  opacity: .1;
 }
 
 @media screen and (min-width: 768px) {

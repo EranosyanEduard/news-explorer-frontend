@@ -27,6 +27,10 @@
   margin-top: var(--form-box-marginTop);
 }
 
+.form__box_with_button {
+  text-align: center;
+}
+
 .form__label {
   color: #2f71e5;
 }
@@ -51,7 +55,7 @@
   transition: opacity .25s, visibility .25s;
 }
 
-.form__error_active {
+.form__error_visible {
   opacity: 1;
   visibility: visible;
 }

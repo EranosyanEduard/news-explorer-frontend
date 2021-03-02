@@ -1,0 +1,33 @@
+.tip {
+  /* Grid container */
+  display: grid;
+  grid-template-rows: 100px;
+  row-gap: 15px;
+}
+
+.tip__icon {
+  background: no-repeat center;
+  background-size: contain;
+}
+
+.tip__icon_type_error {
+  background-image: url(../../images/search-tip/icon_type_error.svg);
+}
+
+.tip__icon_type_search {
+  background-image: url(../../images/search-tip/icon_type_not-found.svg);
+}
+
+.tip__text {
+  font: 18px/1.35 Roboto, var(--page-fallbackFont-family);
+  margin: 0;
+  text-align: center;
+}
+
+.tip__text_type_heading {
+  font: normal 26px/1.15 'Roboto Slab', var(--page-fallbackFont-family);
+}
+
+.tip__text_type_tip {
+  color: #b6bcbf;
+}

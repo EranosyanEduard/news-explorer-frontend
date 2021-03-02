@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CurrentUser from '../../contexts/currentUser';
 import './Page.css';
 import Header from '../Header/Header';
 import Content from '../Content/Content';
@@ -10,8 +11,10 @@ import PopupWithBar from '../PopupWithBar/PopupWithBar';
 function Page(props) {
   const {
     // Values
+    isFoundSearchError,
     isOpenOnePopup,
     isOpenPopupWithBar,
+    isOpenPreloader,
     lastElementChildToHeader,
     lastElementChildToPage,
     libraryProps,
@@ -20,10 +23,15 @@ function Page(props) {
     pageTheme,
     // Handlers
     closeAllPopups,
-    handleAuthButton,
-    handleCardButton,
-    openPopupWithBar
+    onAuthButton,
+    onAddCard,
+    onRemoveCard,
+    openPopupWithBar,
+    openPopupWithLoginForm
   } = props;
+
+  // [Variables]
+  const { name } = useContext(CurrentUser);
 
   // [Functions]
   const getBarWithNavProps = (isPopupItem, theme = pageTheme) => {
@@ -40,10 +48,7 @@ function Page(props) {
     const [activeLinks, authButtonContent] = loggedIn
       ? [
         baseLinks,
-        <>
-          Greta
-          <span className={`navbar__logout navbar__logout_theme_${theme}`} />
-        </>
+        <>{name}<span className={`navbar__logout navbar__logout_theme_${theme}`} /></>
       ]
       : [[baseLinks[0]], 'Авторизоваться'];
 
@@ -53,19 +58,16 @@ function Page(props) {
         buttonContent: authButtonContent,
         isDisplayedOnMobile: isPopupItem,
         links: activeLinks.map((link) => ({ ...link, onClick: closeAllPopups })),
-        onButton: handleAuthButton
+        onButton: onAuthButton
       },
       theme,
       onButton: onMenuButton
     }
   };
   const getLibraryProps = () => {
-    // Card props
+    // Define card button props
     const [buttonType, isDisplayedKeyword, tip] = {
-      home: ['mark', false, !loggedIn
-        ? 'Войдите, чтобы сохранять статьи'
-        : 'Добавить в сохраненные'
-      ],
+      home: ['mark', false, !loggedIn ? 'Войдите, чтобы сохранять статьи' : null],
       news: ['remove', true, 'Убрать из сохраненных']
     }[pageID];
 
@@ -75,10 +77,12 @@ function Page(props) {
       itemProps: {
         buttonType,
         isDisplayedKeyword,
+        loggedIn,
         tip,
-        onButton: handleCardButton
-      },
-      pageID
+        onAddCard,
+        onOpenPopup: openPopupWithLoginForm,
+        onRemoveCard
+      }
     }
   };
 
@@ -90,7 +94,12 @@ function Page(props) {
         pageID={pageID}
       />
       {Array.isArray(libraryProps.items) && (
-        <Content libraryProps={getLibraryProps()} pageID={pageID} />
+        <Content
+          isFoundError={isFoundSearchError}
+          isOpenPreloader={isOpenPreloader}
+          libraryProps={getLibraryProps()}
+          pageID={pageID}
+        />
       )}
       <Author />
       <Footer />

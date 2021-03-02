@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: var(--page-section-width);
   justify-content: center;
+  justify-items: center;
   /* Other styles */
   background: #f5f6f7;
 }
